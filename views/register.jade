@@ -1,0 +1,108 @@
+extends layout
+
+block content
+  
+  -if (notice)
+    strong=notice
+    br
+    hr
+  block scripts
+    script(type='text/javascript').
+      function Validate()
+          {
+
+             /*To check if the contact number contains only digits*/
+            var cnt=  /^[0-9]{10}/; 
+            var contact_element = document.getElementById('contact');
+
+
+            if(!contact_element.value.match(cnt)){
+              alert('Re-enter valid contact number');
+              return false;  
+            }
+
+            var pan_pattern=  /^[A-Z]{5}\d{4}[A-Z]/; 
+            var pan_element = document.getElementById('pan');
+
+
+            if(!pan_element.value.match(pan_pattern)){
+              alert('Re-enter valid PAN');
+              return false;  
+            }
+
+            var pswd_element = document.getElementById('userPassword');
+            var pswd_element_check = document.getElementById('userPasswordAgain');
+            var pswd = pswd_element.value;
+            var pswd_check = pswd_element_check.value;
+            /*To check a password between 6 to 8 characters which contain at least one numeric digit, one uppercase, and one lowercase letter*/
+            /*
+            var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,8}$/;  
+            if(!pswd.match(passw)){
+              alert('Wrong...password!')
+              return false;
+            }  
+            if(pswd!=pswd_check){
+              alert('The Password and verified password does not match!');
+              return false;
+            }
+             */
+            /*To check if username is between 5 to 15 characters which contain only characters, numeric digits, underscore and first character must be a letter*/
+            var usr=  /^[A-Za-z]\w{5,15}$/; 
+            var username_element = document.getElementById('username');
+            var username = username_element.value;
+
+            if(!username.match(usr)){
+              return false;  
+            }
+            //alert(pswd);
+            return true;
+          }
+  h1 Register
+  form(action='/registerauth', method='post' ,name='register',onsubmit='return Validate()' )
+    fieldset
+      .field
+        label(for="name") Name:
+        .control
+          input(type="text", name="name", id="name",minlength="1", maxlength="30", placeholder="Full Name")
+      .field
+        label(for="username") Username:
+        .control
+          input(type="text", name="username", id="name",minlength="5", maxlength="15", placeholder="Full Name")
+          br
+          p 5-15 characters which contain only characters, numeric digits, underscore and first character must be a letter
+
+      .field
+        label(for="userEmail") Email:
+        .control
+          input(type="email", name="email", id="userEmail", maxlength="80", placeholder="username@email.com")
+      .field
+        label(for="userPassword") Password:
+        .control
+          input(type="password", name="password", id="userPassword")
+          br
+          p 6-8 characters which contain at least one numeric digit, one uppercase, and one lowercase letter
+      .field
+        label(for="userPasswordAgain") Password Again:
+        .control
+          input(type="password", name="passwordAgain", id="userPasswordAgain")
+      .field
+        label(for="contact") Contact:
+        .control
+          input(type="text", name="contact", id="contact", minlength="10",maxlength="10")
+      .field
+        label(for="pan") PAN:
+        .control
+          input(type="text", name="pan", id="pan", minlength="10",maxlength="10")
+      .field
+        label(for="address") Address:
+        .control
+          textarea(name="address", id="address", maxlength="250")
+
+      .actions
+        input(type="submit", name="submit", value="submit")
+
+
+   
+  .registrations
+    a(href='/login') Login
+    br

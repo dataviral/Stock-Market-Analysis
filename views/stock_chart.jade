@@ -1,0 +1,21 @@
+extends layout
+block content
+    head
+        title stock.name
+        link(rel="stylesheet", href='/stylesheets/style.css' )
+        link(rel="stylesheet", href='/stylesheets/chart.css' )
+        script(tpye="text/javascript", src="/d3v4.js")
+        script(src='/socket.io.js')
+        
+    body
+        
+        h1#stock_chart.
+            #{stockId}
+        script.
+            var stockId = "#{stockId}";
+        script(type="text/javascript", src="/javascripts/plot.js")
+        
+            
+        
+        
+        

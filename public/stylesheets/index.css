@@ -1,0 +1,92 @@
+html, body{
+  width: 100%;
+  height: 100%;
+  background-color: #F5F3EE ;
+}
+
+
+
+path{
+  stroke: rgba(132, 193, 33, 0.75);
+  fill: none;
+  stroke-width: 8px;
+  position: absolute;
+}
+
+path.triangle{
+    stroke-width: 1px;
+    fill: rgb(78, 187, 11);
+    position: absolute;
+}
+
+#chartRect{
+    /*opacity: 0.8;*/
+}
+
+
+
+
+
+div.chart p{
+    float: left;
+    font-family: Lato;
+    position: absolute;
+    font-size: 4em;
+    color: rgb(214, 105, 35);
+
+    text-shadow: rgba(0,0,0,.2) 2px 6px 5px,rgba(255,255,255,.4) 0 -4px 30px;
+    margin: 1em 0 0 3em;
+}
+
+a{
+    float:  right;
+    position: relative;
+    font-family: : Lato;
+    font-size: 2em;
+    text-decoration: none;
+    /*background-color: rgb(194, 109, 39);*/
+    padding: 1em;
+    /*margin-top: 1em;*/
+    border-radius: .2em;
+    background-color: #dadada;
+    transition: transform 1s;
+    opacity: 0.8;
+    color: red;
+}
+a:hover{
+transform: scale(1.2);
+}
+
+a#login{
+    margin-right: 3em;
+}
+
+a#register{
+    margin-right: 1em;
+}
+
+.svg, div.chart, p{
+    display: inline;
+    /*position: absolute;*/
+}
+
+div.button{
+    float: right;
+    /*background-color: rgb(42, 235, 193);*/
+    /*margin-top: 3em;*/
+}
+
+div.chart{
+    /*margin-top: 1em;*/
+    height: 50em;
+    background-color: #dadada;
+    /*position: absolute;*/
+
+}
+
+div.empty{
+    width: 100%;
+    height: 5em;
+    background-color: rgb(203, 190, 174);
+
+}

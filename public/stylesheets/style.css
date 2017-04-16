@@ -1,0 +1,70 @@
+body {
+  padding: 10px 10px 10px 10px ;
+  margin-left: 40px;
+  margin-right: 40px;
+  font: 23px "Lato", Helvetica, Arial, sans-serif;
+}
+
+table#stocks tr.odd{
+  background-color: #f7edcd;
+}
+
+
+table#stocks{
+    text-align: center;
+    font-family: lato;
+    height: 100%;
+    width: 100%;
+}
+
+h1.stocks{
+    text-align: center;
+}
+
+table#stocks tr.even{
+  background-color: #f2f2f2;
+  }
+
+  table tr.head{
+      background-color: rgb(50, 140, 170);
+  }
+
+  th{
+      padding: 10px
+  }
+
+  td{
+      padding: 5px;
+  }
+
+
+  div#stock_history{
+      float: right;
+      width: 800px;
+      overflow-y: scroll;
+      height: 25em  ;
+  }
+
+  table#stock_history{
+      width: 800px;
+      height: 25em;
+      /*margin-top: 5em;*/
+  }
+
+
+  table#stock_history tr.odd{
+    background-color: #f7edcd;
+  }
+
+  table#summary tr.odd{
+    background-color: #f7edcd;
+  }
+
+  div#summary{
+      float: left;
+  }
+
+  a#dashboard{
+      position: absolute;
+      float: right;
+  }

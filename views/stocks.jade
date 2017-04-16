@@ -1,0 +1,100 @@
+extends layout
+block content
+    head
+        title Stocks
+        script(src="/jquery.js")
+        script(src='/socket.io.js')
+        
+    body
+        //- - console.log("#{user}");
+        h1.stocks.
+            Stocks
+        div
+          table#stocks
+            thead
+                tr.head
+                    th Stock_Id
+                    th Stock Name
+                    th Industry
+                    th Current Value
+            tbody
+                - var i = -1
+                each stock in stocks_list
+                  - i++
+                    tr( id=i, class=(i % 2 == 0) ? 'odd' : 'even' )
+                        td#id #{stock._id}
+                        td#name #{stock.name}
+                        td#industry #{stock.industry}
+                        td#price
+                        td#image
+                            img(src="/images/graph.jpg", height="20px", width="20px")
+        script.
+            var user = !{user};
+            console.log(user);
+            (function($) {
+                $(document).ready(function() {
+                    i = 50;
+                    var rows = [];
+                    for(var k=0; k<i; k++){
+                        rows.push($("table#stocks tr:nth-child("+(k+1)+") ") );
+                    }
+                    //- console.log(ids);
+                    
+                    for(var k=0; k<i; k++){
+                            
+                            if("#{user}"){
+                                
+                                (rows[k]).find("td:nth-child(1)").click(function() {
+                                    var rate = parseFloat($(this).parent().find("td:nth-child(4)").text());
+                                    if(!isNaN(rate)){
+                                        //- console.log( user);
+                                        
+                                        var qty = prompt(`Buy Stocks of ${$(this).parent().find("td:nth-child(1)").text()}\n Enter Qty `);
+                                        if(qty){
+                                        var stock_details = {"s_id" : $(this).parent().find("td:nth-child(1)").text(), "qty": qty, "rate": rate, "i_id": user._id, "time": new Date()};
+                                        $.ajax({
+                                            url: '/buyStocks',
+                                            type: 'POST',
+                                            data: stock_details,
+                                            success: function() {
+                                                alert('Stocks Bought successfully ');
+                                                return false;
+                                            }
+                                        });
+                                    }
+                                    } else {
+                                        alert("Can not buy now !");
+                                    }
+                                    
+                                });
+                            }
+                            $(rows[k]).find("td:nth-child(5)").click(function(){
+                                console.log($(this).parent().find("td:nth-child(1)").text())
+                                window.location="http://localhost:3000/stock_chart?stockId="+$(this).parent().find("td:nth-child(1)").text() ;
+                        });
+                    }
+
+                    socket = io.connect('http://localhost:3001');
+                        
+                    socket.on('thelist_data', function(data) {
+                        
+                        for(var k=0; k<data.length; k++){
+                        
+                            var $cell = $("table#stocks tr:nth-child("+(k+1)+") td:nth-child(4) ");
+                            var x = $cell.html();
+                            $cell.html(data[k].l_fix) ;
+                            console.log(x);
+                            if(parseFloat(data[k].l_fix) - parseFloat(x)  > 0.0){
+                                $cell.css('background-color', 'green');
+                            }   else if (parseFloat(data[k].l_fix) - parseFloat(x)  < 0.0) {
+                                $cell.css('background-color', 'red');
+                            }   else {
+                                $cell.css('background-color', 'yellow');
+                            }
+                        }
+                        
+                    });
+                });
+            })(jQuery);
+            
+            

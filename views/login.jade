@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    h3= title
+    form#form_user_name(name="login", method="post", action="/loginauth")
+        span Username
+        span &nbsp;
+        input#input_username(type="text", placeholder="Username", name="username")
+        br
+        br
+        span Password
+        span &nbsp;
+        input#input_password(type="password", placeholder="Password", name="password" )
+        br
+        br
+        button#submit_details(type="submit") submit

@@ -1,0 +1,19 @@
+html
+    head
+        title #{title}
+        script(type="text/javascript", src="/d3v4.js")
+        link(href="/stylesheets/index.css", rel="stylesheet")
+        //- link(type="stylesheet", href="stylesheets/index.css")
+    body
+        div.empty
+            div.button
+                a(href='/login', id="login") Login
+                a(href='/register', id="register") Register
+        div.chart
+            p(style='white-space:pre;')
+                | Trade
+                |        Invest
+                |               Earn
+        script(type="text/javascript", src="/javascripts/index.js")
+        
+    

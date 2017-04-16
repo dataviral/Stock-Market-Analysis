@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h3= title
+  form#form_add_stock(name="addstudent", method="post",
+  action="/addstock")
+    span Name
+    span &nbsp;
+    input#input_name(type="text", placeholder="name",
+    name="stock")
+    br
+    br
+    span Value
+    span &nbsp;
+    input#input_value(type="text", palceholder="value",
+    name="value")
+    br
+    br
+    button#submit_stock(type="submit") submit
